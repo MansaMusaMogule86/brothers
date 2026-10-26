@@ -1,0 +1,6 @@
+{
+  "name": "Brothers Boutique Gym - Private World",
+  "description": "Ultra-luxury digital private club and bespoke training sanctuary experience for Brothers Boutique Gym in Dubai, UAE.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
