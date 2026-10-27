@@ -1,8 +1,9 @@
 import React from 'react';
-import { PageId, DnaProfile } from '../types';
+import { PageId } from '../types';
 import { ThreeDExperience } from '../components/ThreeDExperience';
+import { HeroSection } from '../components/HeroSection';
 import { BROTHERS_SANCTUARY_INFO, EXPERIENCES_DATA } from '../data/brothersContent';
-import { ArrowRight, Sparkles, ShieldCheck, Clock, Check, ChevronRight } from 'lucide-react';
+import { ArrowRight, Sparkles, ChevronRight } from 'lucide-react';
 
 interface HomePageProps {
   onNavigate: (page: PageId) => void;
@@ -12,66 +13,8 @@ interface HomePageProps {
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenConsultation }) => {
   return (
     <div className="w-full">
-      {/* 1. CINEMATIC HERO SECTION */}
-      <section className="relative min-h-[92vh] flex flex-col justify-between px-6 sm:px-12 py-12 bg-gradient-to-b from-[#141614] via-[#101110] to-[#101110] border-b border-[#B9A17B]/20 overflow-hidden">
-        {/* Background Architectural Atmosphere */}
-        <div className="absolute inset-0 pointer-events-none opacity-20">
-          <div className="absolute -top-32 right-0 w-[500px] h-[500px] rounded-full bg-[#B9A17B]/10 blur-[120px]" />
-          <div className="absolute bottom-0 left-[-100px] w-[450px] h-[450px] rounded-full bg-[#B9A17B]/5 blur-[100px]" />
-          <div className="w-full h-full bg-[radial-gradient(#B9A17B_1px,transparent_1px)] [background-size:32px_32px] opacity-20" />
-        </div>
-
-        {/* Top Kicker */}
-        <div className="relative z-10 pt-4">
-          <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.25em] text-[#B9A17B] border-b border-[#B9A17B]/30 pb-1">
-            <span>30B STREET · AL WASL, JUMEIRAH · DUBAI</span>
-            <span aria-hidden="true">/</span>
-            <span>BROTHERS PRIVATE WELLNESS CLUB</span>
-          </div>
-        </div>
-
-        {/* Central Hero Statement */}
-        <div className="relative z-10 max-w-4xl my-auto py-12">
-          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-serif text-[#F1EEE8] tracking-tight leading-[1.05] text-balance">
-            NOT JUST A GYM.
-            <br />
-            <span className="italic font-light text-[#B9A17B]">A DIFFERENT</span> STANDARD.
-          </h1>
-          <p className="mt-6 sm:mt-8 text-base sm:text-xl text-[#969892] max-w-2xl font-normal leading-relaxed">
-            {BROTHERS_SANCTUARY_INFO.taglines.sub}
-          </p>
-
-          {/* Primary Action Zone */}
-          <div className="mt-10 sm:mt-12 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6">
-            <button
-              onClick={() => onNavigate('dna')}
-              className="px-8 py-4 bg-[#B9A17B] hover:bg-[#D4C4A8] text-[#101110] font-medium text-xs uppercase tracking-[0.2em] transition-all duration-200 flex items-center justify-center gap-2 shadow-xl cursor-pointer"
-            >
-              DISCOVER YOUR DNA <ArrowRight className="w-4 h-4" />
-            </button>
-            <button
-              onClick={() => onNavigate('experiences')}
-              className="px-8 py-4 bg-[#1B1D1B] hover:bg-[#252825] text-[#F1EEE8] border border-[#B9A17B]/30 font-medium text-xs uppercase tracking-[0.2em] transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer"
-            >
-              EXPLORE BROTHERS
-            </button>
-          </div>
-        </div>
-
-        {/* Hero Bottom Strip: Unboxed Metadata */}
-        <div className="relative z-10 pt-6 border-t border-[#B9A17B]/15 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-[#969892]">
-          <div className="flex items-center gap-3">
-            <span>Strict Member Cap</span>
-            <span aria-hidden="true">·</span>
-            <span>Dedicated 1:1 Suites</span>
-            <span aria-hidden="true">·</span>
-            <span>4°C Monolithic Plunge</span>
-          </div>
-          <div className="text-[#B9A17B]">
-            DISCREET SANCTUARY PROTOCOL
-          </div>
-        </div>
-      </section>
+      {/* 1. CINEMATIC HERO SECTION — full-bleed photograph + live statement */}
+      <HeroSection onNavigate={onNavigate} onOpenConsultation={onOpenConsultation} />
 
       {/* 2. THE THREE.JS SANCTUARY MONOLITH EXPERIENCE */}
       <section className="relative w-full border-b border-[#B9A17B]/20">

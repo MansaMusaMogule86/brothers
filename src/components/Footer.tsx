@@ -18,9 +18,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenConsultation }
           <div className="lg:col-span-2 space-y-4">
             <button
               onClick={() => onNavigate('home')}
-              className="text-xl font-serif tracking-[0.2em] text-[#F1EEE8] hover:text-[#B9A17B] transition-colors cursor-pointer text-left"
+              aria-label="Brothers Private Wellness Club — Home"
+              className="cursor-pointer hover:opacity-85 transition-opacity text-left"
             >
-              BROTHERS BOUTIQUE GYM
+              <img
+                src="/branding/logo/brothers-private-wellness-club-logo.png"
+                alt="Brothers Private Wellness Club"
+                className="block h-14 w-auto"
+              />
             </button>
             <p className="text-xs text-[#969892] leading-relaxed max-w-sm">
               Dubai's private training and elevated wellness sanctuary. Designed for disciplined individuals demanding an uncompromising personal standard.

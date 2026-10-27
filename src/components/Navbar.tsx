@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { PageId } from '../types';
 import { Menu, X, Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
@@ -17,6 +17,17 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenConcierge,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  // Transparent over the homepage hero, solid dark once scrolling begins.
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 24);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const isOverHero = currentPage === 'home' && !scrolled && !mobileMenuOpen;
 
   const handleNavClick = (page: PageId) => {
     onNavigate(page);
@@ -26,14 +37,25 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <>
-      <header className="sticky top-0 z-40 w-full bg-[#101110]/95 border-b border-[#B9A17B]/20">
+      <header
+        className={`sticky top-0 z-40 w-full transition-colors duration-300 ${
+          isOverHero
+            ? 'bg-transparent border-b border-transparent'
+            : 'bg-[#101110]/95 border-b border-[#B9A17B]/20 backdrop-blur-sm'
+        }`}
+      >
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-8 px-6 sm:px-8 py-4">
-          {/* Zone 1: Single text element wordmark */}
+          {/* Zone 1: Single brand logo mark */}
           <button
             onClick={() => handleNavClick('home')}
-            className="text-lg md:text-xl font-serif tracking-[0.2em] text-[#F1EEE8] hover:text-[#B9A17B] transition-colors whitespace-nowrap shrink-0 cursor-pointer text-left"
+            aria-label="Brothers Private Wellness Club — Home"
+            className="shrink-0 cursor-pointer hover:opacity-85 transition-opacity"
           >
-            BROTHERS
+            <img
+              src="/branding/logo/brothers-private-wellness-club-logo.png"
+              alt="Brothers Private Wellness Club"
+              className="block h-10 sm:h-11 w-auto"
+            />
           </button>
 
           {/* Zone 2: 4–5 clean single-line text navigation links */}
@@ -114,7 +136,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 top-[65px] z-50 bg-[#101110] p-6 flex flex-col justify-between overflow-y-auto"
+            className="fixed inset-0 top-[73px] sm:top-[77px] z-50 bg-[#101110] p-6 flex flex-col justify-between overflow-y-auto"
           >
             <div className="space-y-6 pt-4">
               <div className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#B9A17B]">
